@@ -82,7 +82,7 @@ def get_email_captcha():
     captcha = random.sample(source, 4)
     captcha = "".join(captcha)
     # I/O：Input/Output
-    message = Message(subject="知了传课注册验证码", recipients=[email], body=f"您的验证码是:{captcha}")
+    message = Message(subject="QA System Captcha", recipients=[email], body=f"Your Captcha:{captcha}")
     mail.send(message)
     # memcached/redis
     # 用数据库表的方式存储
@@ -96,6 +96,6 @@ def get_email_captcha():
 
 @bp.route("/mail/test")
 def mail_test():
-    message = Message(subject="邮箱测试", recipients=["2561884482@qq.com"], body="这是一条测试邮件")
+    message = Message(subject="邮箱测试", recipients=["huangb.gdmm@outlook.com"], body="这是一条测试邮件")
     mail.send(message)
     return "邮件发送成功！"

@@ -66,6 +66,13 @@ def search():
     questions = QuestionModel.query.filter(QuestionModel.title.contains(q)).all()
     return render_template("index.html", questions=questions)
 
+
+
+
+
+
+
+
 # url传参
 # 邮件发送
 # ajax

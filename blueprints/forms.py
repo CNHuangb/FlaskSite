@@ -6,11 +6,11 @@ from exts import db
 
 # Form：主要就是用来验证前端提交的数据是否符合要求
 class RegisterForm(wtforms.Form):
-    email = wtforms.StringField(validators=[Email(message="邮箱格式错误！")])
-    captcha = wtforms.StringField(validators=[Length(min=4, max=4, message="验证码格式错误！")])
-    username = wtforms.StringField(validators=[Length(min=3, max=20, message="用户名格式错误！")])
-    password = wtforms.StringField(validators=[Length(min=6, max=20, message="密码格式错误！")])
-    password_confirm = wtforms.StringField(validators=[EqualTo("password", message="两次密码不一致！")])
+    email = wtforms.StringField(validators=[Email(message="Email format error!")])
+    captcha = wtforms.StringField(validators=[Length(min=4, max=4, message="Verification code format error!")])
+    username = wtforms.StringField(validators=[Length(min=3, max=20, message="Username format error!")])
+    password = wtforms.StringField(validators=[Length(min=6, max=20, message="Password format error!")])
+    password_confirm = wtforms.StringField(validators=[EqualTo("password", message="The passwords are inconsistent twice!")])
 
     # 自定义验证：
     # 1. 邮箱是否已经被注册
@@ -18,7 +18,7 @@ class RegisterForm(wtforms.Form):
         email = field.data
         user = UserModel.query.filter_by(email=email).first()
         if user:
-            raise wtforms.ValidationError(message="该邮箱已经被注册！")
+            raise wtforms.ValidationError(message="This email has already been registered!")
 
     # 2. 验证码是否正确
     def validate_captcha(self, field):
@@ -26,7 +26,7 @@ class RegisterForm(wtforms.Form):
         email = self.email.data
         captcha_model = EmailCaptchaModel.query.filter_by(email=email, captcha=captcha).first()
         if not captcha_model:
-            raise wtforms.ValidationError(message="邮箱或验证码错误！")
+            raise wtforms.ValidationError(message="Email or verification code error!")
         # else:
         #     # todo：可以删掉captcha_model
         #     db.session.delete(captcha_model)
@@ -34,15 +34,15 @@ class RegisterForm(wtforms.Form):
 
 
 class LoginForm(wtforms.Form):
-    email = wtforms.StringField(validators=[Email(message="邮箱格式错误！")])
-    password = wtforms.StringField(validators=[Length(min=6, max=20, message="密码格式错误！")])
+    email = wtforms.StringField(validators=[Email(message="Email format error!")])
+    password = wtforms.StringField(validators=[Length(min=6, max=20, message="Password format error!")])
 
 
 class QuestionForm(wtforms.Form):
-    title = wtforms.StringField(validators=[Length(min=3, max=100, message="标题格式错误！")])
-    content = wtforms.StringField(validators=[Length(min=3,message="内容格式错误！")])
+    title = wtforms.StringField(validators=[Length(min=3, max=100, message="Title format error!")])
+    content = wtforms.StringField(validators=[Length(min=3,message="Content format error!")])
 
 
 class AnswerForm(wtforms.Form):
-    content = wtforms.StringField(validators=[Length(min=3, message="内容格式错误！")])
-    question_id = wtforms.IntegerField(validators=[InputRequired(message="必须要传入问题id！")])
+    content = wtforms.StringField(validators=[Length(min=3, message="Content format error!")])
+    question_id = wtforms.IntegerField(validators=[InputRequired(message="Question ID must be passed in!")])
