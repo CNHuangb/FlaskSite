@@ -11,6 +11,14 @@ DB_URI = 'mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8'.format(USERNAME,PASSWORD,
 SQLALCHEMY_DATABASE_URI = DB_URI
 
 
+
+
+
+
+
+
+
+
 # # 本地数据库的配置信息
 # HOSTNAME = '172.16.2.219'
 # PORT     = '3306'
@@ -24,10 +32,24 @@ SQLALCHEMY_DATABASE_URI = DB_URI
 
 
 
+# # 邮箱配置
+# MAIL_SERVER = "smtp.qq.com"
+# MAIL_USE_SSL = True
+# MAIL_PORT = 465
+# MAIL_USERNAME = "11680917@qq.com"
+# MAIL_PASSWORD = "lrxtgxqmfawwbifi"
+# MAIL_DEFAULT_SENDER = "11680917@qq.com"
+
+
+
+
+
+
+# Gmail：nssm mtne qjsa yhyb
 # 邮箱配置
-MAIL_SERVER = "smtp.qq.com"
+MAIL_SERVER = "smtp.gmail.com"
 MAIL_USE_SSL = True
 MAIL_PORT = 465
-MAIL_USERNAME = "11680917@qq.com"
-MAIL_PASSWORD = "lrxtgxqmfawwbifi"
-MAIL_DEFAULT_SENDER = "11680917@qq.com"
+MAIL_USERNAME = "huangb.mmsh@gmail.com"
+MAIL_PASSWORD = "nssmmtneqjsayhyb"
+MAIL_DEFAULT_SENDER = "huangb.mmsh@gmail.com"
